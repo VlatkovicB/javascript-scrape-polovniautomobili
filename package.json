@@ -1,0 +1,15 @@
+{
+	"name": "scrape-polovniautomibili",
+	"version": "1.0.0",
+	"description": "Small demo of puppeteer.",
+	"main": "scrape.js",
+	"scripts": {
+		"start": "nodemon scrape.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"puppeteer": "^10.0.0"
+	}
+}
