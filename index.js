@@ -4,7 +4,6 @@ import Car from "./car.model.js"
 
 const main = async () => {
   await db.sequelize.authenticate()
-  await db.sequelize.sync({ force: true })
 
   const cars = await getCars()
 
@@ -22,8 +21,6 @@ const main = async () => {
       car.save()
     }
   }
-
-  console.log(cars[0])
 }
 
 main()
