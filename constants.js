@@ -1,9 +1,10 @@
-module.exports = [
-	"year",
-	"engine",
-	"mileage",
-	"bhp",
-	"location",
-	"transmission",
-	"extras",
-];
+export const CAR_INFO = [
+  "year",
+  "engine",
+  "mileage",
+  "bhp",
+  "transmission",
+  "extras",
+]
+
+export const ADS_PER_PAGE = 25

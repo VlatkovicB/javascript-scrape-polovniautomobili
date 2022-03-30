@@ -1,15 +1,24 @@
 {
-	"name": "scrape-polovniautomibili",
-	"version": "1.0.0",
-	"description": "Small demo of puppeteer.",
-	"main": "scrape.js",
-	"scripts": {
-		"start": "nodemon scrape.js"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"dependencies": {
-		"puppeteer": "^10.0.0"
-	}
+  "name": "scrape-polovniautomibili",
+  "version": "1.0.0",
+  "description": "Small demo of puppeteer.",
+  "main": "scrape.js",
+  "type": "module",
+  "scripts": {
+    "start": "node -r dotenv/config index.js",
+    "start:dev": "nodemon -r dotenv/config index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "puppeteer": "^10.0.0",
+    "sequelize": "^6.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.15"
+  }
 }
