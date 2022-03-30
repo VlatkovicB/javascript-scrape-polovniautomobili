@@ -59,6 +59,9 @@ export default async () => {
           singleDiv["price"] = el.getAttribute("data-price")
           singleDiv["id"] = el.getAttribute("data-classifiedid")
           singleDiv["city"] = el.querySelector(".city").textContent.trim()
+          singleDiv["description"] = el
+            .querySelector(".subtitle")
+            .textContent.replace(/\n|\t/g, "")
 
           divs.forEach((div, index) => {
             singleDiv[CAR_INFO[index]] = div.innerHTML
@@ -78,6 +81,6 @@ export default async () => {
   }
 
   browser.close()
-  console.log(allAds[0])
+
   return allAds.map((car) => processCarObject(car))
 }

@@ -8,6 +8,7 @@ const car = db.sequelize.define(
       primaryKey: true,
     },
     name: db.Sequelize.STRING,
+    description: db.Sequelize.STRING,
     year: db.Sequelize.INTEGER,
     engine: db.Sequelize.STRING,
     mileage: db.Sequelize.INTEGER,
