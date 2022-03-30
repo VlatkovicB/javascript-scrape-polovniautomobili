@@ -1,7 +1,9 @@
 import puppeteer from "puppeteer"
-import { processCarObject } from "./utils.js"
+import { isDevelopment, processCarObject } from "./utils.js"
 
 import { ADS_PER_PAGE, CAR_INFO } from "./constants.js"
+
+const { PRICE_FROM = 10000, YEAR_FROM = 2014, YEAR_TO = 2020 } = process.env
 
 const getUrl = (page) => {
   let base = "https://www.polovniautomobili.com/auto-oglasi/pretraga?"
@@ -9,7 +11,7 @@ const getUrl = (page) => {
   if (page > 1) {
     pageQuery = `page=${page}`
   }
-  return `${base}${pageQuery}brand=mazda&sort=basic&model%5B0%5D=3&price_from=10000&year_from=2015&year_to=2019&fuel%5B0%5D=45&door_num=3013&without_price=1&showOldNew=all`
+  return `${base}${pageQuery}brand=mazda&sort=basic&model%5B0%5D=3&price_from=${PRICE_FROM}&year_from=${YEAR_FROM}&year_to=${YEAR_TO}&fuel%5B0%5D=45&door_num=3013&without_price=1&showOldNew=all`
 }
 
 const numberOfAds = (page) =>
@@ -27,7 +29,10 @@ export default async () => {
 
   const browser = await puppeteer.launch({ headless: true })
   const page = await browser.newPage()
-  page.on("console", (consoleObj) => console.log(consoleObj.text()))
+
+  if (isDevelopment())
+    page.on("console", (consoleObj) => console.log(consoleObj.text()))
+
   await page.goto(url)
 
   const results = await numberOfAds(page)
@@ -56,7 +61,6 @@ export default async () => {
           singleDiv["city"] = el.querySelector(".city").textContent.trim()
 
           divs.forEach((div, index) => {
-            console.log(div.innerHTML, CAR_INFO[index])
             singleDiv[CAR_INFO[index]] = div.innerHTML
               .split("</i>")
               .pop()

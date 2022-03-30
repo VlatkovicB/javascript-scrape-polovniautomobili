@@ -13,3 +13,5 @@ export const processCarObject = (car) => ({
   mileage: formatWithoutUnit(car.mileage),
   year: formatWithoutUnit(car.year),
 })
+
+export const isDevelopment = () => process.env.ENV === "development"

@@ -6,11 +6,20 @@ const main = async () => {
   await db.sequelize.authenticate()
 
   const cars = await getCars()
-  await Car.sync({ force: true })
 
-  for await (const car of cars) {
-    const newCar = await Car.create({ ...car })
-    await newCar.save()
+  for await (let car of cars) {
+    const exists = await Car.findOne({
+      where: {
+        id: car.id.toString(),
+      },
+    })
+
+    if (exists) {
+      await Car.update({ ...car }, { where: { id: car.id } }, { multi: true })
+    } else {
+      car = await Car.create({ ...car })
+      car.save()
+    }
   }
 
   console.log(cars[0])
