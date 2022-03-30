@@ -27,7 +27,10 @@ const numberOfAds = (page) =>
 export default async () => {
   let url = getUrl()
 
-  const browser = await puppeteer.launch({ headless: true })
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ["--no-sandbox"],
+  })
   const page = await browser.newPage()
 
   if (isDevelopment())
