@@ -1,3 +1,5 @@
+import cron from "node-cron"
+
 import getCars from "./scrape.js"
 import db from "./database.js"
 import Car from "./car.model.js"
@@ -23,5 +25,7 @@ const main = async () => {
     }
   }
 }
+
+cron.schedule("0 * */8 * * *", main)
 
 main()
