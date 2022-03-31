@@ -19,4 +19,9 @@ const db = {}
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
+export const authenticateDb = async () => {
+  await db.sequelize.authenticate()
+  await db.sequelize.sync()
+}
+
 export default db

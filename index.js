@@ -1,31 +1,27 @@
-import cron from "node-cron"
+import express from "express"
 
-import getCars from "./scrape.js"
-import db from "./database.js"
 import Car from "./car.model.js"
+import { authenticateDb } from "./database.js"
+import runCron from "./cron.js"
 
-const main = async () => {
-  await db.sequelize.authenticate()
-  await db.sequelize.sync()
+const PORT = process.env.PORT || 5000
 
-  const cars = await getCars()
+const start = async () => {
+  await authenticateDb()
+  runCron()
+  const app = express()
 
-  for await (let car of cars) {
-    const exists = await Car.findOne({
-      where: {
-        id: car.id.toString(),
-      },
-    })
+  app.use(express.json())
 
-    if (exists) {
-      await Car.update({ ...car }, { where: { id: car.id } }, { multi: true })
-    } else {
-      car = await Car.create({ ...car })
-      car.save()
-    }
-  }
+  app.get("/", async (req, res) => {
+    const cars = await Car.findAll()
+
+    res.send(cars)
+  })
+
+  app.listen(PORT, () => {
+    console.log(`App running on port ${PORT}`)
+  })
 }
 
-cron.schedule("0 * */8 * * *", main)
-
-main()
+start()
