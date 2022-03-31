@@ -1,8 +1,8 @@
 import express from "express"
 
-import Car from "./car.model.js"
-import { authenticateDb } from "./database.js"
-import runCron from "./cron.js"
+import Car from "./src/car.model.js"
+import { authenticateDb } from "./src/database.js"
+import runCron from "./src/cron.js"
 
 const PORT = process.env.PORT || 5000
 
@@ -24,4 +24,9 @@ const start = async () => {
   })
 }
 
-start()
+try {
+  start()
+} catch (error) {
+  console.log(error)
+  process.exit(1)
+}

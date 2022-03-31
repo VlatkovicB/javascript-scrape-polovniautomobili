@@ -33,8 +33,9 @@ export default async () => {
   })
   const page = await browser.newPage()
 
-  if (isDevelopment())
+  if (isDevelopment()) {
     page.on("console", (consoleObj) => console.log(consoleObj.text()))
+  }
 
   await page.goto(url)
 

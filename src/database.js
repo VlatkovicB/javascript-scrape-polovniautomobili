@@ -2,7 +2,7 @@ import Sequelize from "sequelize"
 import { isDevelopment } from "./utils.js"
 
 const options = isDevelopment()
-  ? null
+  ? { logging: false }
   : {
       dialectOptions: {
         ssl: {
@@ -10,6 +10,7 @@ const options = isDevelopment()
           rejectUnauthorized: false,
         },
       },
+      logging: false,
     }
 
 const sequelize = new Sequelize(process.env.DATABASE_URI, options)
