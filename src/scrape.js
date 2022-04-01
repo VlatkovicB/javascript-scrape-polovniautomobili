@@ -3,15 +3,23 @@ import { isDevelopment, processCarObject } from "./utils.js"
 
 import { ADS_PER_PAGE, CAR_INFO } from "./constants.js"
 
-const { PRICE_FROM = 10000, YEAR_FROM = 2014, YEAR_TO = 2020 } = process.env
+const {
+  PRICE_FROM = 10000,
+  PRICE_TO = 20000,
+  YEAR_FROM = 2014,
+  YEAR_TO = 2020,
+} = process.env
 
 const getUrl = (page) => {
   let base = "https://www.polovniautomobili.com/auto-oglasi/pretraga?"
+  const model = "model%5B0%5D=3&model%5B1%5D=cx-3&model%5B2%5D=cx-30"
   let pageQuery = ""
   if (page > 1) {
     pageQuery = `page=${page}`
   }
-  return `${base}${pageQuery}brand=mazda&sort=basic&model%5B0%5D=3&price_from=${PRICE_FROM}&year_from=${YEAR_FROM}&year_to=${YEAR_TO}&fuel%5B0%5D=45&door_num=3013&without_price=1&showOldNew=all`
+  const url = `${base}${pageQuery}brand=mazda&sort=basic&${model}&price_from=${PRICE_FROM}&price_to=${PRICE_TO}&year_from=${YEAR_FROM}&year_to=${YEAR_TO}&fuel%5B0%5D=45&door_num=3013&without_price=1&showOldNew=all`
+
+  return url
 }
 
 const numberOfAds = (page) =>
