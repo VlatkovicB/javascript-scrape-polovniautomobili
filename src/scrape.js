@@ -18,11 +18,6 @@ const getUrl = (page) => {
     pageQuery = `page=${page}`
   }
   const url = `${base}${pageQuery}brand=mazda&sort=basic&${model}&price_from=${PRICE_FROM}&price_to=${PRICE_TO}&year_from=${YEAR_FROM}&year_to=${YEAR_TO}&fuel%5B0%5D=45&door_num=3013&without_price=1&showOldNew=all`
-<<<<<<< HEAD
-
-=======
-  console.log(url)
->>>>>>> 1256b86b7bd5258a52ec1b289880bc350cc6ac70
   return url
 }
 
