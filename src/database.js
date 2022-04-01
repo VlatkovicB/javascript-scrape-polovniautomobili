@@ -13,7 +13,7 @@ const options = isDevelopment()
       logging: false,
     }
 
-const sequelize = new Sequelize(process.env.DATABASE_URI, options)
+const sequelize = new Sequelize(process.env.DATABASE_URL, options)
 
 const db = {}
 

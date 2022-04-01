@@ -4,7 +4,7 @@ import parser from "cron-parser"
 import { main } from "./tasks.js"
 import { isDevelopment } from "./utils.js"
 
-const CRON_SCHEDULE = isDevelopment() ? "*/20 * * * * *" : "0 * */8 * * *"
+const CRON_SCHEDULE = isDevelopment() ? "*/20 * * * * *" : "0 */8 * * *"
 
 export default () => {
   const interval = parser.parseExpression(CRON_SCHEDULE)
