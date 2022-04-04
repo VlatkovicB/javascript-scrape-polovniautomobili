@@ -26,9 +26,4 @@ const start = async () => {
   })
 }
 
-try {
-  start()
-} catch (error) {
-  console.log(error)
-  process.exit(1)
-}
+start()

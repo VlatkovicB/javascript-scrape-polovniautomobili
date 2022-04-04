@@ -1,8 +1,9 @@
-import getCars from "./scrape.js"
+import scrape from "./scrape.js"
 import models from "./models/index.js"
+import { getAllCars } from "./pageTasks.js"
 
 export const main = async () => {
-  const cars = await getCars()
+  const cars = await scrape(getAllCars)
 
   for await (let car of cars) {
     const exists = await models.Car.findOne({

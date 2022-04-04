@@ -16,6 +16,8 @@ export default db.sequelize.define(
     description: db.Sequelize.STRING,
     city: db.Sequelize.STRING,
     transmission: db.Sequelize.STRING,
+    link: db.Sequelize.STRING,
+    renewDate: db.Sequelize.DATE,
     extras: db.Sequelize.STRING,
   },
   {

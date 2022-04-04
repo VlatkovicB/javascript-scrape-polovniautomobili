@@ -7,4 +7,6 @@ export const CAR_INFO = [
   "extras",
 ]
 
+export const BASE_URL = "https://www.polovniautomobili.com/"
+
 export const ADS_PER_PAGE = 25
