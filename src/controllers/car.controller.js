@@ -5,8 +5,8 @@ class CarController {
     this.carService = CarService
   }
 
-  async getCars() {
-    return this.carService.getCars()
+  async getCars(filters) {
+    return this.carService.getCars(filters)
   }
 }
 

@@ -1,4 +1,4 @@
-import scrape from "./scrape.js"
+import scrape from "./scrape/index.js"
 import models from "./models/index.js"
 import { getAllCars } from "./pageTasks.js"
 

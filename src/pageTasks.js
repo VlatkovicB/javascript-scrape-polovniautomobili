@@ -1,5 +1,5 @@
 import { ADS_PER_PAGE, BASE_URL, CAR_INFO } from "./constants.js"
-import { processCarObject } from "./utils.js"
+import { processCarObject } from "./scrape/utils.js"
 
 const {
   PRICE_FROM = 10000,

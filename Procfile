@@ -1,1 +1,1 @@
-worker:  yarn start
+cron:  yarn cron
