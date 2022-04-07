@@ -1,6 +1,6 @@
 import scrape from "./scrape/index.js"
 import models from "./models/index.js"
-import { getAllCars } from "./pageTasks.js"
+import { getAllCars } from "./scrape/pageTasks.js"
 
 export const main = async () => {
   const cars = await scrape(getAllCars)

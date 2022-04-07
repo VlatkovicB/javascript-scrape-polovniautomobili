@@ -1,10 +1,11 @@
-import { ADS_PER_PAGE, BASE_URL, CAR_INFO } from "./constants.js"
-import { processCarObject } from "./scrape/utils.js"
+import { ADS_PER_PAGE, BASE_URL, CAR_INFO } from "../constants.js"
+import { processCarObject } from "./utils.js"
+import models from "../models/index.js"
 
 const {
-  PRICE_FROM = 10000,
+  PRICE_FROM = 1000,
   PRICE_TO = 20000,
-  YEAR_FROM = 2014,
+  YEAR_FROM = 2000,
   YEAR_TO = 2020,
 } = process.env
 
@@ -15,7 +16,7 @@ const buildUrl = (page) => {
   if (page > 1) {
     pageQuery = `page=${page}`
   }
-  const url = `${base}${pageQuery}brand=mazda&sort=basic&${model}&price_from=${PRICE_FROM}&price_to=${PRICE_TO}&year_from=${YEAR_FROM}&year_to=${YEAR_TO}&fuel%5B0%5D=45&door_num=3013&without_price=1&showOldNew=all`
+  const url = `${base}${pageQuery}&sort=basic&brand=mazda&sort=basic&${model}&price_from=${PRICE_FROM}&price_to=${PRICE_TO}&year_from=${YEAR_FROM}&year_to=${YEAR_TO}&fuel%5B0%5D=45&door_num=3013&without_price=1&showOldNew=all`
   return url
 }
 
@@ -30,8 +31,8 @@ const numberOfAds = (page) =>
     .then((el) => el.filter((el) => el))
 
 export const getAllCars = async (page) => {
-  let url = buildUrl()
-  await page.goto(url)
+  let link = buildUrl()
+  await page.goto(link)
 
   const results = await numberOfAds(page)
   const adsNumber = parseInt(results[0])
@@ -41,7 +42,10 @@ export const getAllCars = async (page) => {
   let allAds = []
 
   while (pageNumber <= totalnumberOfPages) {
-    await page.goto(buildUrl(pageNumber))
+    link = buildUrl(pageNumber)
+
+    await page.goto(link)
+    await models.PageVisit.create({ link })
 
     const ads = await page.$$eval(
       "article:not(.uk-hidden)",
