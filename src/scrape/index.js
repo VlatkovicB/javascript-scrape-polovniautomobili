@@ -3,7 +3,7 @@ import { isDevelopment } from "./utils.js"
 
 export default async (callback) => {
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
     args: ["--no-sandbox"],
   })
   const page = await browser.newPage()

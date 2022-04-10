@@ -2,7 +2,7 @@ import Sequelize from "sequelize"
 import { isDevelopment } from "./scrape/utils.js"
 
 const options = isDevelopment()
-  ? { logging: false }
+  ? { logging: true }
   : {
       dialectOptions: {
         ssl: {

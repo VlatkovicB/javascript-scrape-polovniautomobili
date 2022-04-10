@@ -1,6 +1,7 @@
 import db from "../database.js"
+import AuditLogService from "../services/audit-log.service.js"
 
-export default db.sequelize.define(
+const Loan = db.sequelize.define(
   "Car",
   {
     id: {
@@ -24,3 +25,9 @@ export default db.sequelize.define(
     tableName: "cars",
   }
 )
+
+const excludedFields = ["name", "bhp", "city", "transmission", "renewDate"]
+
+AuditLogService.audit(Loan, "Loan", excludedFields)
+
+export default Loan
