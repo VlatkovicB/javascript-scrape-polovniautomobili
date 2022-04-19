@@ -24,6 +24,7 @@ export default db.sequelize.define(
     },
   },
   {
+    timestamps: false,
     tableName: "audit_log",
   }
 )

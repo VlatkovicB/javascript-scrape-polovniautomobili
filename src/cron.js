@@ -12,7 +12,7 @@ const TIMINGS = {
 }
 
 const CRON_SCHEDULE = isDevelopment()
-  ? TIMINGS.EVERY_20_SECS
+  ? TIMINGS.EVERY_20_MINS
   : TIMINGS.EVERY_8_HOURS
 
 export default () => {

@@ -5,11 +5,8 @@
   "main": "scrape.js",
   "type": "module",
   "scripts": {
-    "start": "node -r dotenv/config src/server.js",
-    "cron": "node -r dotenv/config index.js",
-    "cron:dev": "nodemon --inspect=0.0.0.0:5003 -r dotenv/config index.js",
-    "start:dev": "concurrently --kill-others \"yarn cron:dev\" \"yarn debug\"",
-    "debug": "nodemon --inspect=0.0.0.0:5002 -r dotenv/config src/server.js"
+    "start": "node -r dotenv/config index.js",
+    "start:dev": "nodemon --inspect=0.0.0.0:5003 -r dotenv/config index.js"
   },
   "keywords": [],
   "author": "",
@@ -27,7 +24,6 @@
     "sequelize": "^6.17.0"
   },
   "devDependencies": {
-    "concurrently": "^7.1.0",
     "nodemon": "2.0.15"
   }
 }

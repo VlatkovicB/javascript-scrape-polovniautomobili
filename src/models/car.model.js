@@ -20,8 +20,11 @@ const Loan = db.sequelize.define(
     link: db.Sequelize.STRING,
     renewDate: db.Sequelize.DATE,
     extras: db.Sequelize.STRING,
+    createdAt: db.Sequelize.DATE,
+    updatedAt: db.Sequelize.DATE,
   },
   {
+    timestamps: false,
     tableName: "cars",
   }
 )

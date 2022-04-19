@@ -6,6 +6,7 @@ export default db.sequelize.define(
     link: db.Sequelize.STRING(1000),
   },
   {
+    timestamps: false,
     tableName: "page_visit",
   }
 )
